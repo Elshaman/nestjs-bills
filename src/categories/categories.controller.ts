@@ -1,40 +1,39 @@
 import { Controller, Get, Param, Post, Body, Put, Delete, HttpCode , HttpStatus } from '@nestjs/common';
+import { CategoriesService } from './categories.service';
 
 @Controller('categories')
 export class CategoriesController {
 
+    constructor(private categoriesService: CategoriesService){}
+
     @Get()
     @HttpCode(HttpStatus.OK)
     getAll(){
-        return 'traer todas las categories '
+        return this.categoriesService.findAll()
     }
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
     getSingleById(@Param('id') id: Number ){
-        return `obtener ${id}`
+        return this.categoriesService.findOne(+id)
     }
 
     @Post()
     @HttpCode(HttpStatus.CREATED)
     create(@Body() payload: any){
-        return {
-            message: 'create category',
-            payload
-        }  
+        return this.categoriesService.create(payload)
     }
 
     @Put(':id')
     @HttpCode(HttpStatus.OK)
     update(@Param('id') id: Number, @Body() payload: any){
-        return {
-            message: 'update category',
-            payload,
-            id
-        }  
+        return this.categoriesService.update(+id , payload)
+        } 
+
+    @Delete(':id')
+    @HttpCode(HttpStatus.OK)
+    delete(@Param('id') id: Number){
+        return this.categoriesService.delete(+id)
     }
-
-   
-
 
 }
