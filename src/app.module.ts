@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CategoriesController } from './categories/categories.controller';
-import { InvoicesController } from './invoices/invoices.controller';
-import { CategoriesService } from './categories/categories.service';
-import { InvoicesService } from './invoices/invoices.service';
+import { CategoriesController } from './categories/controllers/categories.controller';
+import { InvoicesController } from './invoices/controllers/invoices.controller';
+import { CategoriesService } from './categories/services/categories.service';
+import { InvoicesService } from './invoices/services/invoices.service';
 
 @Module({
   imports: [],
